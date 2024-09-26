@@ -19,7 +19,7 @@ int main()
 				printf("\\b");
 				break;
 			case '\\':
-				printf("\\");
+				printf("\\\\");
 				break;
 			default:
 				putchar(c);
