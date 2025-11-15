@@ -2,31 +2,28 @@
 
 #define  CELSIUS 1
 #define  FAHR 0
-
+#define LOW 0 
+#define UPPER 300
+#define STEP 15
 float tempconv(float, int);
 
 int main()
 {
-	int low,upper,step;
 	float temp;
 	
-	low = temp =  0;
-	upper = 300;
-	step = 15;
+	temp =  LOW;
 	
 	printf("%12s %12s\n","FAHRENHEIT","CELSIUS");
-	while (temp <= upper) 
+	while (temp <= UPPER) 
 	{
 		printf("%12.3f %12.3f\n",temp,tempconv(temp,CELSIUS) );
-		temp += step;	
+		temp += STEP;	
 	}
-	
-	temp = 0;
+
+	/* print this in reverse and use a for loop instead */
 	printf("%12s %12s\n","CELSIUS","FAHRENHEIT");
-	while (temp <= upper) 
-	{
+	for (temp = UPPER ; temp > LOW ; temp -= STEP) { 
 		printf("%12.3f %12.3f\n",temp,tempconv(temp,FAHR) );
-		temp += step;	
 	}
 
 	return 0;
