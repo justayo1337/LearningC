@@ -1,4 +1,4 @@
-# C++ Study Path for a Linux Systems Engineer
+# C++ Study Path for a Linux Systems Engineer (Claude created)
 
 A phased curriculum (~6–9 months at 5–8 hrs/week) that leans on what you already know — Linux internals, shell, processes, filesystems — and uses C++ as the tool to go deeper. Every phase ends with a project that touches real syscalls, not toy exercises.
 
