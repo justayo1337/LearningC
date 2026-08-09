@@ -2,7 +2,7 @@
 
 A phased curriculum (~6–9 months at 5–8 hrs/week) that leans on what you already know — Linux internals, shell, processes, filesystems — and uses C++ as the tool to go deeper. Every phase ends with a project that touches real syscalls, not toy exercises.
 
-Resources are tagged **[free]** or **[paid]**. Phase 1 is built entirely on the two books you already own — *A Tour of C++* for breadth and *C++ Primer* for depth and exercises — so you can start tonight without buying anything.
+Resources are tagged **[free]** or **[paid]**. The path is built on the three books you already own: *A Tour of C++* for breadth, *C++ Primer* for depth and exercises, and *Professional C++* as the modern (C++23) reference that patches Primer's age and carries you through the later phases — so you can start tonight without buying anything.
 
 ---
 
@@ -21,14 +21,15 @@ Resources are tagged **[free]** or **[paid]**. Phase 1 is built entirely on the 
 
 **Goal:** read and write idiomatic modern C++ (C++17/20), not "C with classes."
 
-**Primary texts — both books you own, in complementary roles:**
+**Primary texts — all books you own, in complementary roles:**
 
 - ***A Tour of C++* (3rd ed., Stroustrup)** — the breadth-first pass. Read a chapter to see what exists and how modern code looks. Dense; expect rereads. ([Author's page for errata/extras](https://www.stroustrup.com/tour3.html) **[free]**)
 - ***C++ Primer* (5th ed., Lippman/Lajoie/Moo)** — the depth-and-exercises track. After (or alongside) each *Tour* chapter, work the matching Primer chapters and **do their exercises** — Primer's end-of-section exercises are the practice backbone of this phase.
+- ***Professional C++* (6th ed., Gregoire)** — the modern reference. In Phase 1, use it as the gap-filler: whenever Primer's C++11-era treatment feels dated, read Gregoire's chapter on the same topic for the C++23 version. From Phase 2 on it becomes your main book (see later phases).
 
-**Rhythm:** *Tour* chapter first for the modern shape of a topic, then the Primer chapters below to cement it, then the exercises.
+**Rhythm:** *Tour* chapter first for the modern shape of a topic, then the Primer chapters below to cement it, then the exercises; check *Professional C++* when Primer feels dated.
 
-> **Caveat on Primer:** the 5th edition is C++11-only — it predates `string_view`, `optional`/`variant`, structured bindings, ranges, `std::format`, and concepts. Trust it for fundamentals (it's excellent there), but let *Tour*, [learncpp.com](https://www.learncpp.com), and [cppreference](https://en.cppreference.com) override it on anything post-2011. Skim, don't study, its inheritance-heavy OOP chapter (ch. 15) — modern systems code uses far less inheritance than 2012-era books suggest.
+> **Caveat on Primer:** the 5th edition is C++11-only — it predates `string_view`, `optional`/`variant`, structured bindings, ranges, `std::format`, and concepts. Trust it for fundamentals (it's excellent there), but let *Professional C++*, *Tour*, [learncpp.com](https://www.learncpp.com), and [cppreference](https://en.cppreference.com) override it on anything post-2011. Skim, don't study, its inheritance-heavy OOP chapter (ch. 15) — modern systems code uses far less inheritance than 2012-era books suggest.
 
 Topics, mapped to both books:
 
@@ -46,10 +47,9 @@ Topics, mapped to both books:
 - [learncpp.com](https://www.learncpp.com) **[free]** — worked examples for anything either book leaves terse, and coverage of the post-C++11 features Primer lacks.
 - [C++ Core Guidelines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines) **[free]** — skim sections R.* (resource management) and ES.* (expressions/statements).
 - [Exercism C++ track](https://exercism.org/tracks/cpp) **[free]** — optional extra reps; Primer's exercises already cover the practice load.
-- Optional deeper references (buy later if wanted, not needed to start):
-  - **Upgrade path:** [*Professional C++*, 6th ed.](https://www.wiley.com/en-us/Professional+C++,+6th+Edition-p-9781394193172) (Gregoire, Wiley 2024) **[paid]** — if you buy one more book, buy this around Phase 2–3. It's the modern (C++23) equivalent of Primer's depth for working programmers, with exercises, Linux-tested case studies, and coverage of testing/debugging/design that Primer lacks. It also absorbs the *Effective Modern C++* recommendation below.
+- Optional deeper references (not needed — your three books cover this ground):
   - [*Beautiful C++*](https://www.informit.com/store/beautiful-c-plus-plus-30-core-guidelines-for-writing-9780137647842) (Davidson & Gregory) **[paid]** — the Core Guidelines with narrative.
-  - [*Effective Modern C++*](https://www.oreilly.com/library/view/effective-modern-c/9781491908419/) (Meyers) **[paid]** — items on move/`auto`/smart pointers are still gold; also the natural "what changed after C++11" bridge from Primer. Skip if you get *Professional C++*.
+  - [*Effective Modern C++*](https://www.oreilly.com/library/view/effective-modern-c/9781491908419/) (Meyers) **[paid]** — largely absorbed by *Professional C++*, which you own; only worth it if you enjoy Meyers' item-by-item style.
 
 **Project 1: `lsplus`** — a colorized `ls` clone. Directory iteration with `std::filesystem`, `stat()` info, sorting with ranges, formatted output with `std::format`. Pure standard library, no raw pointers.
 
@@ -69,6 +69,7 @@ Topics:
 7. Third-party libs worth knowing: [fmt](https://github.com/fmtlib/fmt), [spdlog](https://github.com/gabime/spdlog), [CLI11](https://github.com/CLIUtils/CLI11), [nlohmann/json](https://github.com/nlohmann/json) — all **[free]**.
 
 **Resources**
+- *Professional C++* (Gregoire) — you own it; from this phase on it's your primary C++ book: its chapters on I/O, strings, error handling, and program design are the modern reference while TLPI covers the syscall side.
 - [*The Linux Programming Interface*](https://man7.org/tlpi/) (Kerrisk) **[paid]** — you likely know chunks already; use it as the syscall reference while you write C++ wrappers. The [man7.org training materials](https://man7.org/training/) and man pages themselves are **[free]**.
 - [Beej's Guide to Network Programming](https://beej.us/guide/bgnet/) **[free]** — for sockets (written in C; you'll wrap it).
 - CMake: [Modern CMake gitbook](https://cliutils.gitlab.io/modern-cmake/) **[free]** to start; [*Professional CMake*](https://crascit.com/professional-cmake/) (Scott) **[paid]** as the definitive reference.
@@ -93,6 +94,7 @@ Topics:
 7. Memory deep-dive: allocators, arena allocation, `mmap`-backed pools; measure with `valgrind --tool=massif` and [heaptrack](https://github.com/KDE/heaptrack) **[free]**.
 
 **Resources**
+- *Professional C++* (Gregoire) — start with its multithreading chapter for the modern (`jthread`, coroutine-aware) overview, then go deeper with Williams.
 - [*C++ Concurrency in Action* (2nd ed.)](https://www.manning.com/books/c-plus-plus-concurrency-in-action-second-edition) (Williams) **[paid]** — the standard text; chapters 1–5 + 9 are the core.
 - Talks **[free]**:
   - Herb Sutter — "atomic<> Weapons" [part 1](https://www.youtube.com/watch?v=A8eCGOqgvH4) / [part 2](https://www.youtube.com/watch?v=KeLBd2EJLOU) (C++ and Beyond 2012; still the memory-model talk).
@@ -128,7 +130,7 @@ Topics:
 **Goal:** code you'd let a colleague depend on.
 
 Topics:
-1. Testing: [GoogleTest](https://github.com/google/googletest) or [Catch2](https://github.com/catchorg/Catch2) **[free]**; fuzzing with [libFuzzer](https://llvm.org/docs/LibFuzzer.html) **[free]** on any parser you wrote.
+1. Testing: [GoogleTest](https://github.com/google/googletest) or [Catch2](https://github.com/catchorg/Catch2) **[free]**; fuzzing with [libFuzzer](https://llvm.org/docs/LibFuzzer.html) **[free]** on any parser you wrote. *Professional C++*'s testing/debugging chapters (part V) are your book-side guide for this whole phase.
 2. CI hygiene: [clang-format](https://clang.llvm.org/docs/ClangFormat.html), [clang-tidy](https://clang.llvm.org/extra/clang-tidy/), sanitizer jobs, warnings-as-errors.
 3. Templates for real: concepts (C++20), CRTP, when *not* to use templates. (*Tour* ch. 7–8 and *Primer* ch. 16 again, now with mileage behind you.)
 4. API design: what goes in headers, pimpl, ABI stability concerns for shared libs.
@@ -157,4 +159,4 @@ Topics:
 
 ## Sources
 
-The path draws on the standard modern-C++ canon: Stroustrup's [*A Tour of C++*](https://www.stroustrup.com/tour3.html), Lippman/Lajoie/Moo's *C++ Primer* (5th ed.), the [C++ Core Guidelines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines), Kerrisk's [TLPI](https://man7.org/tlpi/), Williams' [*Concurrency in Action*](https://www.manning.com/books/c-plus-plus-concurrency-in-action-second-edition), Bakhvalov's [perf book](https://github.com/dendibakh/perf-book), and the [CppCon](https://www.youtube.com/@CppCon) / [isocpp.org](https://isocpp.org/blog) communities. Talk URLs were verified via web search on 2026-08-07.
+The path draws on the standard modern-C++ canon: Stroustrup's [*A Tour of C++*](https://www.stroustrup.com/tour3.html), Lippman/Lajoie/Moo's *C++ Primer* (5th ed.), Gregoire's [*Professional C++* (6th ed.)](https://www.wiley.com/en-us/Professional+C++,+6th+Edition-p-9781394193172), the [C++ Core Guidelines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines), Kerrisk's [TLPI](https://man7.org/tlpi/), Williams' [*Concurrency in Action*](https://www.manning.com/books/c-plus-plus-concurrency-in-action-second-edition), Bakhvalov's [perf book](https://github.com/dendibakh/perf-book), and the [CppCon](https://www.youtube.com/@CppCon) / [isocpp.org](https://isocpp.org/blog) communities. Talk URLs were verified via web search on 2026-08-07.
