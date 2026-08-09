@@ -1,8 +1,8 @@
-# C++ Study Path for a Linux Systems Engineer (Claude created)
+# C++ Study Path for a Linux Systems Engineer
 
 A phased curriculum (~6–9 months at 5–8 hrs/week) that leans on what you already know — Linux internals, shell, processes, filesystems — and uses C++ as the tool to go deeper. Every phase ends with a project that touches real syscalls, not toy exercises.
 
-Resources are tagged **[free]** or **[paid]**. Your primary Phase 1 text is *A Tour of C++*, which you already own — you can start tonight.
+Resources are tagged **[free]** or **[paid]**. Phase 1 is built entirely on the two books you already own — *A Tour of C++* for breadth and *C++ Primer* for depth and exercises — so you can start tonight without buying anything.
 
 ---
 
@@ -21,27 +21,35 @@ Resources are tagged **[free]** or **[paid]**. Your primary Phase 1 text is *A T
 
 **Goal:** read and write idiomatic modern C++ (C++17/20), not "C with classes."
 
-**Primary text: *A Tour of C++* (3rd ed., Stroustrup) — you own it.** Read it front to back, but pace it against the topic list below. It's dense; expect to reread chapters. ([Author's page for errata/extras](https://www.stroustrup.com/tour3.html) **[free]**)
+**Primary texts — both books you own, in complementary roles:**
 
-Topics, mapped to the book:
+- ***A Tour of C++* (3rd ed., Stroustrup)** — the breadth-first pass. Read a chapter to see what exists and how modern code looks. Dense; expect rereads. ([Author's page for errata/extras](https://www.stroustrup.com/tour3.html) **[free]**)
+- ***C++ Primer* (5th ed., Lippman/Lajoie/Moo)** — the depth-and-exercises track. After (or alongside) each *Tour* chapter, work the matching Primer chapters and **do their exercises** — Primer's end-of-section exercises are the practice backbone of this phase.
 
-1. **Compilation model** — *Tour* ch. 1 & 3 (Basics, Modularity). The book is light here, so supplement by inspecting your own binaries with `nm`/`objdump`/`ldd` — tools you already know; now point them at what *you* built. Headers vs. source, translation units, linking.
-2. **Value semantics** — ch. 1–2. Stack vs. heap, copies, references, `const` correctness.
-3. **RAII** — ch. 5–6 (Classes, Essential Operations). The single most important C++ idea: constructors/destructors as resource lifetime. Understand it deeply before touching `new`.
-4. **Smart pointers** — ch. 15 (Pointers and Containers). `unique_ptr` first (95% of cases), `shared_ptr` sparingly. Rule: raw `new`/`delete` almost never appear in modern code.
-5. **Move semantics** — ch. 6. Why `std::move` exists, what a moved-from object is.
-6. **The STL** — ch. 9–14 (Library, Strings, I/O, Containers, Algorithms, Ranges) + ch. 16 (Utilities: `optional`, `variant`, `chrono`). `vector`, `string`, `string_view`, `unordered_map`, `span`, ranges views.
-7. **Classes** — ch. 5–6. Rule of zero/five, `= default`, `= delete`, operator overloading basics.
-8. **Error handling** — ch. 4. Exceptions vs. error codes vs. `std::expected` (C++23) — know both camps.
-9. **Lambdas & templates** — ch. 7–8 (Templates, Concepts) at the "write a function template" level; defer metaprogramming. Skim ch. 18 (Concurrency) but save it for Phase 3.
+**Rhythm:** *Tour* chapter first for the modern shape of a topic, then the Primer chapters below to cement it, then the exercises.
+
+> **Caveat on Primer:** the 5th edition is C++11-only — it predates `string_view`, `optional`/`variant`, structured bindings, ranges, `std::format`, and concepts. Trust it for fundamentals (it's excellent there), but let *Tour*, [learncpp.com](https://www.learncpp.com), and [cppreference](https://en.cppreference.com) override it on anything post-2011. Skim, don't study, its inheritance-heavy OOP chapter (ch. 15) — modern systems code uses far less inheritance than 2012-era books suggest.
+
+Topics, mapped to both books:
+
+1. **Compilation model** — *Tour* ch. 1 & 3 (Basics, Modularity); *Primer* ch. 1 + §6.1. Both books are light here, so supplement by inspecting your own binaries with `nm`/`objdump`/`ldd` — tools you already know; now point them at what *you* built. Headers vs. source, translation units, linking.
+2. **Value semantics & basic types** — *Tour* ch. 1–2; *Primer* ch. 2–4 (types, expressions — its strongest foundational material). Stack vs. heap, copies, references, `const` correctness.
+3. **RAII** — *Tour* ch. 5–6 (Classes, Essential Operations); *Primer* ch. 7 (Classes) + ch. 12 (Dynamic Memory). The single most important C++ idea: constructors/destructors as resource lifetime. Understand it deeply before touching `new`.
+4. **Smart pointers** — *Tour* ch. 15; *Primer* ch. 12. `unique_ptr` first (95% of cases), `shared_ptr` sparingly. Rule: raw `new`/`delete` almost never appear in modern code.
+5. **Move semantics** — *Tour* ch. 6; *Primer* ch. 13 (Copy Control — the best chapter in the book; do every exercise). Why `std::move` exists, what a moved-from object is.
+6. **The STL** — *Tour* ch. 9–14 + ch. 16 (Utilities: `optional`, `variant`, `chrono`); *Primer* ch. 3 (strings/vectors), ch. 8 (I/O), ch. 9–11 (sequential containers, algorithms, associative containers). `vector`, `string`, `string_view`, `unordered_map`, `span`, ranges views (ranges are post-Primer; use *Tour* ch. 14).
+7. **Classes & operator overloading** — *Tour* ch. 5–6; *Primer* ch. 7 + ch. 14 (Overloaded Operations). Rule of zero/five, `= default`, `= delete`.
+8. **Error handling** — *Tour* ch. 4; *Primer* §5.6 + §18.1 (exceptions). Exceptions vs. error codes vs. `std::expected` (C++23) — know both camps.
+9. **Lambdas & templates** — *Tour* ch. 7–8 (Templates, Concepts); *Primer* §10.3 (lambdas) + ch. 16 (Templates) at the "write a function template" level; defer metaprogramming. Skim *Tour* ch. 18 (Concurrency) but save it for Phase 3.
 
 **Supplements**
-- [learncpp.com](https://www.learncpp.com) **[free]** — when a *Tour* chapter is too terse, the matching learncpp section fills the gap with worked examples.
-- [Exercism C++ track](https://exercism.org/tracks/cpp) **[free]** — finger practice alongside the reading.
+- [learncpp.com](https://www.learncpp.com) **[free]** — worked examples for anything either book leaves terse, and coverage of the post-C++11 features Primer lacks.
 - [C++ Core Guidelines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines) **[free]** — skim sections R.* (resource management) and ES.* (expressions/statements).
+- [Exercism C++ track](https://exercism.org/tracks/cpp) **[free]** — optional extra reps; Primer's exercises already cover the practice load.
 - Optional deeper references (buy later if wanted, not needed to start):
+  - **Upgrade path:** [*Professional C++*, 6th ed.](https://www.wiley.com/en-us/Professional+C++,+6th+Edition-p-9781394193172) (Gregoire, Wiley 2024) **[paid]** — if you buy one more book, buy this around Phase 2–3. It's the modern (C++23) equivalent of Primer's depth for working programmers, with exercises, Linux-tested case studies, and coverage of testing/debugging/design that Primer lacks. It also absorbs the *Effective Modern C++* recommendation below.
   - [*Beautiful C++*](https://www.informit.com/store/beautiful-c-plus-plus-30-core-guidelines-for-writing-9780137647842) (Davidson & Gregory) **[paid]** — the Core Guidelines with narrative.
-  - [*Effective Modern C++*](https://www.oreilly.com/library/view/effective-modern-c/9781491908419/) (Meyers) **[paid]** — items on move/`auto`/smart pointers are still gold.
+  - [*Effective Modern C++*](https://www.oreilly.com/library/view/effective-modern-c/9781491908419/) (Meyers) **[paid]** — items on move/`auto`/smart pointers are still gold; also the natural "what changed after C++11" bridge from Primer. Skip if you get *Professional C++*.
 
 **Project 1: `lsplus`** — a colorized `ls` clone. Directory iteration with `std::filesystem`, `stat()` info, sorting with ranges, formatted output with `std::format`. Pure standard library, no raw pointers.
 
@@ -122,7 +130,7 @@ Topics:
 Topics:
 1. Testing: [GoogleTest](https://github.com/google/googletest) or [Catch2](https://github.com/catchorg/Catch2) **[free]**; fuzzing with [libFuzzer](https://llvm.org/docs/LibFuzzer.html) **[free]** on any parser you wrote.
 2. CI hygiene: [clang-format](https://clang.llvm.org/docs/ClangFormat.html), [clang-tidy](https://clang.llvm.org/extra/clang-tidy/), sanitizer jobs, warnings-as-errors.
-3. Templates for real: concepts (C++20), CRTP, when *not* to use templates. (*Tour* ch. 7–8 again, now with mileage behind you.)
+3. Templates for real: concepts (C++20), CRTP, when *not* to use templates. (*Tour* ch. 7–8 and *Primer* ch. 16 again, now with mileage behind you.)
 4. API design: what goes in headers, pimpl, ABI stability concerns for shared libs.
 5. Reading real codebases — pick one and read it: [fmt](https://github.com/fmtlib/fmt) (beautifully written, small), [folly](https://github.com/facebook/folly) (Facebook's systems toolkit), or [dragonfly](https://github.com/dragonflydb/dragonfly) (modern C++ Redis-compatible store).
 
@@ -149,4 +157,4 @@ Topics:
 
 ## Sources
 
-The path draws on the standard modern-C++ canon: Stroustrup's [*A Tour of C++*](https://www.stroustrup.com/tour3.html), the [C++ Core Guidelines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines), Kerrisk's [TLPI](https://man7.org/tlpi/), Williams' [*Concurrency in Action*](https://www.manning.com/books/c-plus-plus-concurrency-in-action-second-edition), Bakhvalov's [perf book](https://github.com/dendibakh/perf-book), and the [CppCon](https://www.youtube.com/@CppCon) / [isocpp.org](https://isocpp.org/blog) communities. Talk URLs were verified via web search on 2026-08-07.
+The path draws on the standard modern-C++ canon: Stroustrup's [*A Tour of C++*](https://www.stroustrup.com/tour3.html), Lippman/Lajoie/Moo's *C++ Primer* (5th ed.), the [C++ Core Guidelines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines), Kerrisk's [TLPI](https://man7.org/tlpi/), Williams' [*Concurrency in Action*](https://www.manning.com/books/c-plus-plus-concurrency-in-action-second-edition), Bakhvalov's [perf book](https://github.com/dendibakh/perf-book), and the [CppCon](https://www.youtube.com/@CppCon) / [isocpp.org](https://isocpp.org/blog) communities. Talk URLs were verified via web search on 2026-08-07.
